@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('loss_events', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('location');
+            $table->date('date');
+            $table->text('description');
         });
     }
 
