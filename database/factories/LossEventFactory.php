@@ -16,8 +16,14 @@ class LossEventFactory extends Factory
      */
     public function definition(): array
     {
+        // * helyszín
+        // * időpont
+        // * leírás
+
         return [
-            //
+            'location' => "Budapest",
+            'date' => "2021-01-01",
+            'description' => "Description",
         ];
     }
 }

@@ -16,8 +16,12 @@ class BrowsingHistoryFactory extends Factory
      */
     public function definition(): array
     {
+        // * keresett rendszám
+        // * keresés ideje
+
         return [
-            //
+            'searched_registration_number' => "ABC-123",
+            'searched_at' => "2021-01-01",
         ];
     }
 }

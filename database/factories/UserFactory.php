@@ -20,12 +20,17 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        // * adminisztrátor-e (logikai)
+        // * prémium felhasználó-e (logikai) - az adminisztrátorok automatikusan prémium felhasználók is, ezt többféleképpen is meg lehet oldani
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'is_admin' => false,
+            'is_premium' => false,
         ];
     }
 
