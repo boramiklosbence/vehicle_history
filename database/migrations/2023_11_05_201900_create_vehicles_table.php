@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('registration_number');
             $table->string('brand');
             $table->string('type');
-            $table->number('year');
+            $table->integer('year');
             $table->string('image'); // update type
         });
     }

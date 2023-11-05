@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('searched_registration_number');
-            $table->$table->date('searched_at');
+            $table->date('searched_at');
         });
     }
 
