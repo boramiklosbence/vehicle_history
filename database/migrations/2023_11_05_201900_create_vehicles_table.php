@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('type');
             $table->integer('year');
-            $table->string('image'); // update type
+            $table->string('image'); // we need to store the actual image (for example in byte[])
         });
     }
 

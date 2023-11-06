@@ -16,18 +16,18 @@ class VehicleFactory extends Factory
      */
     public function definition(): array
     {
-        // * rendszám
-        // * márka
-        // * típus
-        // * gyártási év
-        // * kép
+        // * rendszám (pl. ABC-123)
+        // * márka (pl. Suzuki)
+        // * típus (pl. E42, [A-Z]\d{2})
+        // * gyártási év (pl. 2019)
+        // * kép 
 
         return [
-            'registration_number' => "ABC-123",
-            'brand' => "Suzuki",
-            'type' => "Swift",
-            'year' => 2010,
-            'image' => "https://www.autonavigator.hu/wp-content/uploads/2019/10/2019-suzuki-swift-1-2-dualjet-shvs-4wd-1.jpg",
+            'registration_number' => fake()->unique()->regexify('[A-Z]{3}-\d{3}'),
+            'brand' => fake()->randomElement([ 'Toyota','Volkswagen','Ford','Honda','Suzuki','Nissan','Hyundai','Mercedes-Benz','BMW','Kia']),
+            'type' => fake()->regexify('[A-Z]\d{2}'),
+            'year' => fake()->year(),
+            'image' => 'https://www.autonavigator.hu/wp-content/uploads/2019/10/2019-suzuki-swift-1-2-dualjet-shvs-4wd-1.jpg',
         ];
     }
 }
