@@ -23,14 +23,16 @@ class UserFactory extends Factory
         // * adminisztrátor-e (logikai)
         // * prémium felhasználó-e (logikai) - az adminisztrátorok automatikusan prémium felhasználók is, ezt többféleképpen is meg lehet oldani
 
+        $isAdmin = fake()->boolean(); // make this a less frequent event and consistent
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'is_admin' => fake()->boolean(),
-            'is_premium' => fake()->boolean(), // TODO: When an user is admin then he/she is a premium user too
+            'is_admin' => $isAdmin,
+            'is_premium' => $isAdmin ? True : fake()->boolean(),
         ];
     }
 

@@ -21,8 +21,8 @@ class LossEventFactory extends Factory
         // * leírás
 
         return [
-            'location' => "Budapest",
-            'date' => "2021-01-01",
+            'location' => fake()->city(),
+            'date' => fake()->date(),
             'description' => "Description",
         ];
     }
