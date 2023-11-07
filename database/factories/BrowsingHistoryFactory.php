@@ -21,7 +21,7 @@ class BrowsingHistoryFactory extends Factory
 
         return [
             'searched_registration_number' => "ABC-123",
-            'searched_at' => "2021-01-01",
+            'searched_at' => fake()->date(),
         ];
     }
 }

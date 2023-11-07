@@ -23,7 +23,11 @@ class UserFactory extends Factory
         // * adminisztrátor-e (logikai)
         // * prémium felhasználó-e (logikai) - az adminisztrátorok automatikusan prémium felhasználók is, ezt többféleképpen is meg lehet oldani
 
-        $isAdmin = fake()->boolean(); // make this a less frequent event and consistent
+        $randomAdminNumber = fake()->numberBetween(1, 4);
+        $isAdmin = $randomAdminNumber === 1;
+
+        $randomPremiumNumber = fake()->numberBetween(1, 4);
+        $isPremium = $randomPremiumNumber === 2 || $isAdmin;
 
         return [
             'name' => fake()->name(),
@@ -32,7 +36,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'is_admin' => $isAdmin,
-            'is_premium' => $isAdmin ? True : fake()->boolean(),
+            'is_premium' => $isAdmin ? $isAdmin : $isPremium,
         ];
     }
 
