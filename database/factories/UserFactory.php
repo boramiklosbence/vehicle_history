@@ -23,10 +23,10 @@ class UserFactory extends Factory
         // * adminisztrátor-e (logikai)
         // * prémium felhasználó-e (logikai) - az adminisztrátorok automatikusan prémium felhasználók is, ezt többféleképpen is meg lehet oldani
 
-        $randomAdminNumber = fake()->numberBetween(1, 4);
+        $randomAdminNumber = fake()->numberBetween(1, 4); // 1/4 esély
         $isAdmin = $randomAdminNumber === 1;
 
-        $randomPremiumNumber = fake()->numberBetween(1, 4);
+        $randomPremiumNumber = fake()->numberBetween(1, 4); // 1/4 esély
         $isPremium = $randomPremiumNumber === 2 || $isAdmin;
 
         return [
