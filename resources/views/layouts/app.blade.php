@@ -79,6 +79,21 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="mb-4">
+            <div class="container">
+                <hr>
+                <div class="d-flex flex-column align-items-center">
+                    <div>
+                        <span class="small">Kártörténet</span>
+                        <span class="mx-1">·</span>
+                        <span class="small">Laravel {{ app()->version() }}</span>
+                        <span class="mx-1">·</span>
+                        <span class="small">PHP {{ phpversion() }}</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 

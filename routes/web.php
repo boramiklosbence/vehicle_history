@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\LossEventController;
+use App\Http\Controllers\BrowsingHistoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('vehicles', VehicleController::class);
+
+Route::resource('loss_events', LossEventController::class);
+
+Route::resource('browsing_histories', BrowsingHistoryController::class);
+
 Route::get('/', function () {
     return view('home');
 });
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();

@@ -11,7 +11,7 @@ class BrowsingHistoryController extends Controller
      */
     public function index()
     {
-        //
+        // I need this
     }
 
     /**
