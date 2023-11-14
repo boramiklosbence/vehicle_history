@@ -11,7 +11,7 @@ class LossEventController extends Controller
      */
     public function index()
     {
-        //
+        return view('loss_events.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class LossEventController extends Controller
      */
     public function create()
     {
-        //
+        return view('loss_events.create');
     }
 
     /**
@@ -27,7 +27,7 @@ class LossEventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('loss_events.store');
     }
 
     /**
@@ -35,7 +35,7 @@ class LossEventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('loss_events.show');
     }
 
     /**
@@ -43,7 +43,7 @@ class LossEventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('loss_events.edit');
     }
 
     /**
@@ -51,7 +51,7 @@ class LossEventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('loss_events.update');
     }
 
     /**
@@ -59,6 +59,6 @@ class LossEventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return view('loss_events.destroy');
     }
 }

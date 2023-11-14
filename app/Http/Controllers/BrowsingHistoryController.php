@@ -11,7 +11,7 @@ class BrowsingHistoryController extends Controller
      */
     public function index()
     {
-        // I need this
+        return view('browsing_histories.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class BrowsingHistoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('browsing_histories.create');
     }
 
     /**
@@ -27,7 +27,7 @@ class BrowsingHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('browsing_histories.store');
     }
 
     /**
@@ -35,7 +35,7 @@ class BrowsingHistoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('browsing_histories.show');
     }
 
     /**
@@ -43,7 +43,7 @@ class BrowsingHistoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('browsing_histories.edit');
     }
 
     /**
@@ -51,7 +51,7 @@ class BrowsingHistoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('browsing_histories.update');
     }
 
     /**
@@ -59,6 +59,6 @@ class BrowsingHistoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return view('browsing_histories.destroy');
     }
 }

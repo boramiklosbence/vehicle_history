@@ -6,16 +6,22 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form class="row" action="">
-                            <div class="col-lg-10 mb-2 mb-sm-2 mb-lg-0">
-                                <input type="text" class="form-control" placeholder="XYZ-123">
+                        <form method="POST" action="{{route('browsing_histories.store')}}">
+                            @csrf
+                            <div class="row mb-2">
+                                <div class="col-lg-10 mb-2 mb-sm-2 mb-lg-0">
+                                    <input type="text" class="form-control" placeholder="XYZ-123">
+                                </div>
+                                <div class="col-lg-2 mb-2 mb-sm-2 mb-lg-0">
+                                    <button type="submit" class="btn btn-primary w-100">Keresés</button>
+                                </div>
                             </div>
-                            <div class="col-lg-2 mb-2 mb-sm-2 mb-lg-0">
-                                <button class="btn btn-outline-primary w-100" type="button">
-                                    Keresés
-                                </button>
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <a href="{{route('browsing_histories.index')}}" role="button" class="btn btn-secondary">Előzmények</a>
+                                </div>
                             </div>
-                        </form>                        
+                        </form>
                     </div>
                 </div>
             </div>
@@ -24,14 +30,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Üdvözöljük a Kártörténet weboldalán!</div>
-
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
                         <p>Az autók világában bekövetkezett káreseményekkel való hatékony és gyorsan elérhető kezelés
                             érdekében
                             hoztuk létre Kártörténetet. Legyen Ön is részese az egyszerű és
