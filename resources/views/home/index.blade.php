@@ -4,19 +4,17 @@
     <div class="container">
         <div class="row justify-content-center mb-2">
             <div class="col-md-8">
-                @if (Session::has('post_created'))
-                    <div class="alert alert-primary mb-2" role="alert">
-                        No number<br />
+                @if (Session::has('non_existent_registration_number'))
+                    <div class="alert alert-danger mb-2" role="alert">
+                        Az adatbázisban nem található olyan jármű, amely a megadott rendszámmal rendelkezik.<br />
                     </div>
                 @endif
-
                 <div class="card">
                     <div class="card-body">
                         <form method="POST" action="{{ route('browsing_histories.store') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-10 mb-2 mb-sm-2 mb-lg-0">
-
                                     <input 
                                         type="text"
                                         id="registration_number"
@@ -28,7 +26,6 @@
                                     @error('registration_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-
                                 </div>
                                 <div class="col-lg-2 mb-2 mb-sm-2 mb-lg-0">
                                     <button type="submit" class="btn btn-primary w-100">Keresés</button>
@@ -37,7 +34,7 @@
                         </form>
                         <div class="row mt-2">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('browsing_histories.index') }}" class="btn btn-secondary">Előzmények</a>
+                                <a href="{{ route('browsing_histories.index') }}" role="button" class="btn btn-secondary">Előzmények megtekintése</a>
                             </div>
                         </div>
                     </div>
