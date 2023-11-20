@@ -4,13 +4,31 @@
     <div class="container">
         <div class="row justify-content-center mb-2">
             <div class="col-md-8">
+                @if (Session::has('post_created'))
+                    <div class="alert alert-primary mb-2" role="alert">
+                        No number<br />
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{route('browsing_histories.store')}}">
+                        <form method="POST" action="{{ route('browsing_histories.store') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-10 mb-2 mb-sm-2 mb-lg-0">
-                                    <input type="text" class="form-control" placeholder="XYZ-123">
+
+                                    <input 
+                                        type="text"
+                                        id="registration_number"
+                                        name="registration_number"
+                                        class="form-control @error('registration_number') is-invalid @else @if (old('registration_number')) is-valid @endif @enderror"
+                                        placeholder="XYZ-123"
+                                        value="{{ old('registration_number') }}"
+                                    >
+                                    @error('registration_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
                                 <div class="col-lg-2 mb-2 mb-sm-2 mb-lg-0">
                                     <button type="submit" class="btn btn-primary w-100">Keresés</button>
@@ -19,7 +37,7 @@
                         </form>
                         <div class="row mt-2">
                             <div class="col-lg-12 text-center">
-                                <a href="{{route('missing')}}" role="button" class="btn btn-secondary">Előzmények</a>
+                                <a href="{{ route('browsing_histories.index') }}" class="btn btn-secondary">Előzmények</a>
                             </div>
                         </div>
                     </div>

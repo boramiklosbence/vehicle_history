@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BrowsingHistoryController extends Controller
 {
@@ -27,7 +28,21 @@ class BrowsingHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        return view('browsing_histories.store');
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        $validated = $request->validate([
+            'registration_number' => [
+                'required',
+                'regex:/^(?:[A-Za-z]{3}-?\d{3}|[A-Za-z]{3}\d{3})$/',
+            ]
+        ], [
+            'registration_number.required' => 'A',
+            'registration_number.regex' => 'B'
+        ]);        
+
+        return view('browsing_histories.index');
     }
 
     /**

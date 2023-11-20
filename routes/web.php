@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\LossEventController;
 use App\Http\Controllers\BrowsingHistoryController;
@@ -17,6 +18,8 @@ use App\Http\Controllers\BrowsingHistoryController;
 |
 */
 
+Route::resource('home', HomeController::class);
+
 Route::resource('vehicles', VehicleController::class);
 
 Route::resource('loss_events', LossEventController::class);
@@ -24,7 +27,7 @@ Route::resource('loss_events', LossEventController::class);
 Route::resource('browsing_histories', BrowsingHistoryController::class);
 
 Route::get('/', function () {
-    return view('home');
+    return redirect("/home");
 });
 
 Auth::routes();
