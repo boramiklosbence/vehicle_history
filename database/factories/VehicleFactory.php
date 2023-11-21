@@ -27,7 +27,6 @@ class VehicleFactory extends Factory
             'brand' => fake()->randomElement([ 'Toyota','Volkswagen','Ford','Honda','Suzuki','Nissan','Hyundai','Mercedes-Benz','BMW','Kia']),
             'type' => fake()->regexify('[A-Z]\d{2}'),
             'year' => fake()->year(),
-            'image_path' => 'https://www.autonavigator.hu/wp-content/uploads/2019/10/2019-suzuki-swift-1-2-dualjet-shvs-4wd-1.jpg',
         ];
     }
 }

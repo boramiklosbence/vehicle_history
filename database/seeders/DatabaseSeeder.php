@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // Create data
         $users = \App\Models\User::factory(5)->create();
         $vehicles = \App\Models\Vehicle::factory(5)->create();
-        $loss_events = \App\Models\LossEvent::factory(5)->create();
+        $loss_events = \App\Models\LossEvent::factory(10)->create();
         $browsing_histories = \App\Models\BrowsingHistory::factory(5)->create();
 
         // Manually create an admin and a premium user to always have at least one of each

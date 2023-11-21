@@ -23,7 +23,7 @@ class LossEventFactory extends Factory
         return [
             'location' => fake()->city(),
             'date' => fake()->date(),
-            'description' => fake()->paragraph(3, false),
+            'description' => fake()->paragraph(1, false),
         ];
     }
 }

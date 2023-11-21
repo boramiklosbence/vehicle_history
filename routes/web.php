@@ -27,7 +27,7 @@ Route::resource('loss_events', LossEventController::class);
 Route::resource('browsing_histories', BrowsingHistoryController::class);
 
 Route::get('/', function () {
-    return redirect("/home");
+    return redirect('home');
 });
 
 Auth::routes();

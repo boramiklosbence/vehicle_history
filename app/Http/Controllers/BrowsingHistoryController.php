@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use lluminate\Database\Eloquent\Collection;
 
 use \App\Models\Vehicle;
 use \App\Models\BrowsingHistory;
@@ -12,12 +13,7 @@ use \App\Models\BrowsingHistory;
 class BrowsingHistoryController extends Controller
 {
     private function findVehicleByRegistrationNumber($registrationNumber) {
-        foreach (Vehicle::all() as $vehicle) {
-            if ($vehicle['registration_number'] === $registrationNumber) {
-                return $vehicle;
-            }
-        }
-        return null;
+        return Vehicle::where('registration_number', $registrationNumber)->first();
     }
 
     /**
@@ -66,15 +62,20 @@ class BrowsingHistoryController extends Controller
         // associate the browsing history with the current user
         $browsing_history->user()->associate(Auth::user())->save();
 
-        // check if the vehicle exists
+        // find the vehicle by registration number
         $vehicle = $this->findVehicleByRegistrationNumber($validated['registration_number']);
 
         if (isset($vehicle)) {
-            return redirect('loss_events');
+            // get the loss events of the vehicle and order them by date
+            $lossEvents = $vehicle->loss_events->sortByDesc('date');
+
+            Session::flash('vehicle', $vehicle);
+            Session::flash('lossEvents', $lossEvents);
         }else{
             Session::flash('non_existent_registration_number');
-            return redirect('home');
         }
+
+        return redirect('home');
     }
 
     /**
