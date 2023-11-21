@@ -9,21 +9,19 @@
                     <div class="card-body">
                         <p>
                             Az autók világában bekövetkezett káreseményekkel való hatékony és gyorsan elérhető kezelés
-                            érdekében
-                            hoztuk létre Kártörténetet. Legyen Ön is részese az egyszerű és
+                            érdekében hoztuk létre Kártörténetet. Legyen Ön is részese az egyszerű és
                             átlátható kárkezelésnek!
                         </p>
                         <p class="fw-bold">Főbb szolgáltatásaink:</p>
                         <p>
                             🚗 <span class="fw-bold">Kártörténet Keresése:</span> Használja keresőrendszerünket a gépjármű
-                            kártörténeteinek gyors és hatékony
-                            feltérképezéséhez. Böngéssze át az autók múltbeli káreseményeit, mielőtt döntést hozna!
+                            kártörténeteinek gyors és hatékony feltérképezéséhez. 
+                            Böngéssze át az autók múltbeli káreseményeit, mielőtt döntést hozna!
                         </p>
                         <p>
                             📄 <span class="fw-bold">Részletes Információk:</span> Találjon részletes adatokat minden egyes
-                            káreseményről, beleértve a
-                            helyszínt, a dátumot és a káresemény résztvevőit. Így mindig teljes körű képet kaphat a
-                            gépjármű történetéről.
+                            káreseményről, beleértve a helyszínt, a dátumot és a káresemény résztvevőit.
+                            Így mindig teljes körű képet kaphat a gépjármű történetéről.
                         </p>
                     </div>
                 </div>
@@ -38,7 +36,10 @@
                             @csrf
                             <div class="row mb-2">
                                 <div class="col-lg-10 mb-2 mb-lg-0">
-                                    <input type="text" id="registration_number" name="registration_number"
+                                    <input 
+                                        type="text" 
+                                        id="registration_number" 
+                                        name="registration_number"
                                         class="form-control @error('registration_number') is-invalid @elseif (old('registration_number')) is-valid @endif"
                                         placeholder="XYZ-123" 
                                         value="{{ old('registration_number') }}"
@@ -53,7 +54,7 @@
                             </div>
                         </form>
                         <div class="row">
-                            <div class="col text-center">
+                            <div class="col-lg-12 text-center">
                                 <a href="{{ route('browsing_histories.index') }}" role="button" class="btn btn-light">
                                     Előzmények megtekintése
                                 </a>
@@ -78,11 +79,11 @@
                             <div class="row">
                                 <div class="col-lg-4 mb-2">
                                     <img src="{{ isset($vehicle->image_path) ? './storage/'.$vehicle->image_path : asset('storage/images/default_vehicle.jpg') }}"
-                                        class="rounded mx-auto d-block img-thumbnail" alt="Jármű">
+                                         class="rounded mx-auto d-block img-thumbnail" alt="Jármű"
+                                    >
                                 </div>
                                 <div class="col-lg-8">
-                                    <p><span class="fw-bold">Rendszán:</span>
-                                        {{ Session::get('vehicle')->registration_number }}</p>
+                                    <p><span class="fw-bold">Rendszám:</span>{{ Session::get('vehicle')->registration_number }}</p>
                                     <p><span class="fw-bold">Márka:</span> {{ Session::get('vehicle')->brand }}</p>
                                     <p><span class="fw-bold">Típus:</span> {{ Session::get('vehicle')->type }}</p>
                                     <p><span class="fw-bold">Gyártási év:</span> {{ Session::get('vehicle')->year }}</p>
