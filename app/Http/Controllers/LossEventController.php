@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use \App\Models\Vehicle;
+use \App\Models\LossEvent;
+
 
 class LossEventController extends Controller
 {
@@ -35,9 +37,11 @@ class LossEventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(LossEvent $loss_event)
     {
-        return view('loss_events.show');
+        return view('loss_events.show', [
+            'loss_event' => $loss_event
+        ]);
     }
 
     /**

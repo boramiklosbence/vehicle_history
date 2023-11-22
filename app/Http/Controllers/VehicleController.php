@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use \App\Models\Vehicle;
+
 class VehicleController extends Controller
 {
     /**
@@ -33,9 +35,15 @@ class VehicleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vehicle $vehicle)
     {
-        return view('vehicles.show');
+        // get the loss events of the vehicle and order them by date
+        $loss_events = $vehicle->loss_events->sortByDesc('date');
+
+        return view('vehicles.show', [
+            'vehicle' => $vehicle,
+            'loss_events' => $loss_events,
+        ]);
     }
 
     /**

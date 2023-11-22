@@ -66,16 +66,11 @@ class BrowsingHistoryController extends Controller
         $vehicle = $this->findVehicleByRegistrationNumber($validated['registration_number']);
 
         if (isset($vehicle)) {
-            // get the loss events of the vehicle and order them by date
-            $lossEvents = $vehicle->loss_events->sortByDesc('date');
-
-            Session::flash('vehicle', $vehicle);
-            Session::flash('lossEvents', $lossEvents);
+            return redirect()->route('vehicles.show', $vehicle);
         }else{
             Session::flash('non_existent_registration_number');
+            return redirect('home');
         }
-
-        return redirect('home');
     }
 
     /**

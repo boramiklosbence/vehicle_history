@@ -28,7 +28,7 @@
             </div>
         </div>
         {{-- Search --}}
-        <div class="row justify-content-center mb-2">
+        <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-body">
@@ -55,7 +55,7 @@
                         </form>
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('browsing_histories.index') }}" role="button" class="btn btn-light">
+                                <a href="{{ route('browsing_histories.index')}}" role="button" class="btn btn-light">
                                     Előzmények megtekintése
                                 </a>
                             </div>
@@ -69,67 +69,5 @@
                 @endif
             </div>
         </div>
-        {{-- Vehicle details --}}
-        @if (Session::has('vehicle'))
-            <div class="row justify-content-center mb-2">
-                <div class="col-md-10 col-lg-8">
-                    <div class="card">
-                        <div class="card-header">Jármű adatai</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-4 mb-2">
-                                    <img src="{{ isset($vehicle->image_path) ? './storage/'.$vehicle->image_path : asset('storage/images/default_vehicle.jpg') }}"
-                                         class="rounded mx-auto d-block img-thumbnail" alt="Jármű"
-                                    >
-                                </div>
-                                <div class="col-lg-8">
-                                    <p><span class="fw-bold">Rendszám:</span>{{ Session::get('vehicle')->registration_number }}</p>
-                                    <p><span class="fw-bold">Márka:</span> {{ Session::get('vehicle')->brand }}</p>
-                                    <p><span class="fw-bold">Típus:</span> {{ Session::get('vehicle')->type }}</p>
-                                    <p><span class="fw-bold">Gyártási év:</span> {{ Session::get('vehicle')->year }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-        {{-- Loss events --}}
-        @if (Session::has('lossEvents'))
-            <div class="row justify-content-center mb-2">
-                <div class="col-md-10 col-lg-8">
-                    <div class="card">
-                        <div class="card-header">Káresemények</div>
-                        <table class="table table-hover align-middle mb-0">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Helyszín</th>
-                                    <th scope="col">Dátum</th>
-                                    <th scope="col">Leírás</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (Session::get('lossEvents') as $lossEvent)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}.</td>
-                                        <td>{{ $lossEvent->location }}</td>
-                                        <td>{{ $lossEvent->date }}</td>
-                                        <td>{{ $lossEvent->description }}</td>
-                                        <td class="text-end">
-                                            <a href="{{ route('browsing_histories.index') }}" role="button"
-                                                class="btn btn-secondary">
-                                                Megtekintés
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
 @endsection
