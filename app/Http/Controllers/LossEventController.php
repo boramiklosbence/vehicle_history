@@ -39,6 +39,8 @@ class LossEventController extends Controller
      */
     public function show(LossEvent $loss_event)
     {
+        $this->authorize('view', Auth::user(), $post);
+
         return view('loss_events.show', [
             'loss_event' => $loss_event
         ]);

@@ -26,6 +26,12 @@ Route::resource('loss_events', LossEventController::class);
 
 Route::resource('browsing_histories', BrowsingHistoryController::class);
 
+Route::middleware('auth')->group(function () {
+    Route::resource('vehicles', VehicleController::class);
+    Route::resource('loss_events', LossEventController::class);
+    Route::resource('browsing_histories', BrowsingHistoryController::class);
+});
+
 Route::get('/', function () {
     return redirect('home');
 });

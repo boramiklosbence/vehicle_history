@@ -21,7 +21,20 @@ class BrowsingHistoryController extends Controller
      */
     public function index()
     {
-        return view('browsing_histories.index');
+        // check if user is logged in
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        // get the current user
+        $user = Auth::user();
+        // get the broswing histories
+        $browsing_histories = $user->browsing_histories;
+
+        // vehicles needed yet
+        return view('browsing_histories.index', [
+            'browsing_histories' => $browsing_histories
+        ]);
     }
 
     /**
