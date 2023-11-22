@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Főoldal')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center mb-2">
@@ -49,7 +51,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-lg-2">
-                                    <button type="submit" class="btn btn-primary w-100">Keresés</button>
+                                    <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-magnifying-glass"></i> Keresés</button>
                                 </div>
                             </div>
                         </form>
