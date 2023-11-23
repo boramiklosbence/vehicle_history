@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+use \App\Models\User;
 use \App\Models\Vehicle;
 use \App\Models\LossEvent;
 
@@ -39,8 +41,7 @@ class LossEventController extends Controller
      */
     public function show(LossEvent $loss_event)
     {
-        $this->authorize('view', Auth::user(), $post);
-
+        // add a middleware or something
         return view('loss_events.show', [
             'loss_event' => $loss_event
         ]);
