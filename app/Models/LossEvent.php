@@ -9,6 +9,7 @@ class LossEvent extends Model
 {
     use HasFactory;
 
+    // N-N
     public function vehicles() {
         return $this->belongsToMany(Vehicle::class)->withTimestamps();
     }

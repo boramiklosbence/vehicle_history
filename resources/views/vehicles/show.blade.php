@@ -15,10 +15,10 @@
                     <div class="card-header">Jármű adatai</div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-4 mb-2">
-                                <img src="{{ isset($vehicle->image_path) ? './storage/' . $vehicle->image_path : asset('storage/images/default_vehicle.jpg') }}" class="rounded mx-auto d-block img-thumbnail" alt="Jármű">
+                            <div class="col-4 mb-2">
+                                <img src="{{ isset($vehicle->image_path) ? './storage/' . $vehicle->image_path : asset('storage/images/default_vehicle.jpg') }}" class="rounded mx-auto d-block img-fluid" alt="Jármű">
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-8">
                                 <p><span class="fw-bold">Rendszám: </span>{{ $vehicle->registration_number }}</p>
                                 <p><span class="fw-bold">Márka: </span> {{ $vehicle->brand }}</p>
                                 <p><span class="fw-bold">Típus: </span> {{ $vehicle->type }}</p>

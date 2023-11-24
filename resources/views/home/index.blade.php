@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        {{-- Description --}}
+        {{-- website description --}}
         <div class="row justify-content-center mb-2">
             <div class="col-md-10 col-lg-8">
                 <div class="card">
