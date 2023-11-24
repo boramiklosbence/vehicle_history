@@ -17,6 +17,7 @@
     </title>
 
     <!-- Scripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/sass/fontawesome.scss', 'resources/js/app.js'])
 </head>
 
@@ -95,6 +96,8 @@
                     </div>
                 </div>
             </div>
+
+            @yield('scripts')
         </footer>
     </div>
 </body>

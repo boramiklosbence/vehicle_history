@@ -6,8 +6,17 @@
     <div class="container">
         <h1>Keresési eredmény</h1>
         <div class="mb-4">
-            <a href="{{ route('home.index')}}"><i class="fa-solid fa-chevron-left"></i></i> Vissza a főoldalra</a>
+            <a href="{{ route('home.index')}}"><i class="fa-solid fa-chevron-left"></i> Vissza a főoldalra</a>
         </div>
+        @if (Session::has('not_premium_user'))
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8 ">
+                    <div class="alert alert-danger" role="alert">
+                        Nincs jogosultságod a káresemény részletes megtekintéséhez.<br />
+                    </div>
+                </div>
+            </div>
+        @endif
         {{-- Vehicle details --}}
         <div class="row justify-content-center mb-2">
             <div class="col-md-10 col-lg-8">
@@ -53,8 +62,8 @@
                                         <td>{{ $loss_event->date }}</td>
                                         <td>{{ $loss_event->description }}</td>
                                         <td class="text-end">
-                                            <a href="{{ route('loss_events.show', $loss_event) }}" role="button" class="btn btn-secondary">
-                                                Megtekintés
+                                            <a href="{{ route('loss_events.show', $loss_event) }}" role="button" class="btn btn-primary">
+                                                Részletek
                                             </a>
                                         </td>
                                     </tr>
