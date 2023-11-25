@@ -29,7 +29,7 @@ class VehiclePolicy
      */
     public function create(User $user): bool
     {
-        return $user->is_admin;
+        return $user->is_admin === 1;
     }
 
     /**

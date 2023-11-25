@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 use \App\Models\Vehicle;
+use \App\Policies\VehiclePolicy;
 
 class VehicleController extends Controller
 {
@@ -17,7 +19,19 @@ class VehicleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(){}
+    public function create(){
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        // TODO: show this in index view
+        if (auth()->user()->cannot('create')) {
+            Session::flash('not_admin_user');
+            return redirect()->back();
+        }
+
+        return view('vehicles.create');
+    }
 
     /**
      * Store a newly created resource in storage.

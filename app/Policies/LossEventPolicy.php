@@ -22,7 +22,7 @@ class LossEventPolicy
      */
     public function view(User $user, LossEvent $lossEvent): bool
     {
-        return $user->is_premium;
+        return $user->is_premium === 1;
     }
 
     /**
