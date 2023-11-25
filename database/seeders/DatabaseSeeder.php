@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create data
-        $users = \App\Models\User::factory(5)->create();
-        $vehicles = \App\Models\Vehicle::factory(5)->create();
+        $users = \App\Models\User::factory(10)->create();
+        $vehicles = \App\Models\Vehicle::factory(10)->create();
         $loss_events = \App\Models\LossEvent::factory(10)->create();
-        $browsing_histories = \App\Models\BrowsingHistory::factory(5)->create();
+        $browsing_histories = \App\Models\BrowsingHistory::factory(10)->create();
 
         // Manually create an admin and a premium user to always have at least one of each
         $users->push(\App\Models\User::create([

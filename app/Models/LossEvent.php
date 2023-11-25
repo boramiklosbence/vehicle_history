@@ -13,4 +13,15 @@ class LossEvent extends Model
     public function vehicles() {
         return $this->belongsToMany(Vehicle::class)->withTimestamps();
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'location',
+        'date',
+        'description',
+    ];
 }

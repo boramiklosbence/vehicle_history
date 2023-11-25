@@ -41,7 +41,6 @@
                                 <div class="col-lg-10 mb-2 mb-lg-0">
                                     <input 
                                         type="text" 
-                                        id="registration_number" 
                                         name="registration_number"
                                         class="form-control @error('registration_number') is-invalid @elseif (old('registration_number')) is-valid @endif"
                                         placeholder="XYZ-123" 

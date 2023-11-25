@@ -2,12 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Auth\Access\Response;
 
-use App\Models\LossEvent;
-use App\Models\User;
-
-class LossEventPolicy
+class VehiclePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -20,9 +19,9 @@ class LossEventPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, LossEvent $lossEvent): bool
+    public function view(User $user, Vehicle $vehicle): bool
     {
-        return $user->is_premium;
+        //
     }
 
     /**
@@ -30,13 +29,13 @@ class LossEventPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->is_admin;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, LossEvent $lossEvent): bool
+    public function update(User $user, Vehicle $vehicle): bool
     {
         //
     }
@@ -44,7 +43,7 @@ class LossEventPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, LossEvent $lossEvent): bool
+    public function delete(User $user, Vehicle $vehicle): bool
     {
         //
     }
@@ -52,7 +51,7 @@ class LossEventPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, LossEvent $lossEvent): bool
+    public function restore(User $user, Vehicle $vehicle): bool
     {
         //
     }
@@ -60,7 +59,7 @@ class LossEventPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, LossEvent $lossEvent): bool
+    public function forceDelete(User $user, Vehicle $vehicle): bool
     {
         //
     }

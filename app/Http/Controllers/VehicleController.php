@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use \App\Models\Vehicle;
 
@@ -28,6 +29,10 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
         // get the loss events of the vehicle and order them by date
         $loss_events = $vehicle->loss_events->sortByDesc('date');
 

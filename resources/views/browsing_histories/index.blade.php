@@ -14,12 +14,12 @@
         {{-- Browsing histories --}}
         <div class="row justify-content-center mb-2">
             <div class="col-md-10 col-lg-8">
-                @forelse ( $browsingHistories as $browsingHistory)
+                @forelse ( $browsing_histories as $browsing_history)
                     <div class="card mb-2 hover">
                         <div class="card-body d-flex align-items-center">
                             <div class="col-3">
                                 @php
-                                    $vehicle = $vehicles->where('registration_number', $browsingHistory->searched_registration_number)->first();
+                                    $vehicle = $vehicles->where('registration_number', $browsing_history->searched_registration_number)->first();
                                 @endphp
                                 <img 
                                     src="{{ isset($vehicles->img_path) ? './storage/'.$vehicles->img_path : asset('storage/images/default_vehicle.jpg') }}" 
@@ -28,24 +28,22 @@
                                     alt="Jármű"
                                 >
                             </div>
-                            <div class="col-3 text-center">{{$browsingHistory->searched_registration_number}}</div>
-                            <div class="col-3 text-center">{{$browsingHistory->searched_at}}</div>
+                            <div class="col-3 text-center">{{$browsing_history->searched_registration_number}}</div>
+                            <div class="col-3 text-center">{{$browsing_history->searched_at}}</div>
                             <div class="col-3 text-center">
-                                <a role="button" class="btn btn-primary search-btn" data-hidden-value="{{$browsingHistory->searched_registration_number}}">
+                                <a role="button" class="btn btn-primary search-btn" data-hidden-value="{{$browsing_history->searched_registration_number}}">
                                     Megtekintés
                                 </a>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <div class="col-md-10 col-lg-8">
-                        <div class="alert alert-primary" role="alert">
-                            Nincs megjeleníthető keresési előzmény.
-                        </div>
+                    <div class="alert alert-primary" role="alert">
+                        Nincs megjeleníthető keresési előzmény.
                     </div>
                 @endforelse
                 <div class="d-flex justify-content-center">
-                    {{$browsingHistories->links()}}
+                    {{$browsing_histories->links()}}
                 </div>
             </div>
         </div>

@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+use App\Http\Traits\CommonTrait;
+
 use App\Models\Vehicle;
 use App\Models\BrowsingHistory;
 
 class BrowsingHistoryController extends Controller
 {
+    use CommonTrait;
+
      /**
      * Display a listing of the resource.
      */
@@ -21,11 +25,11 @@ class BrowsingHistoryController extends Controller
         }
         
         $vehicles = Vehicle::all(); 
-        $browsingHistories = BrowsingHistory::where('user_id', auth()->user()->id)->paginate(10);
+        $browsing_histories = BrowsingHistory::where('user_id', auth()->user()->id)->paginate(10);
 
         return view('browsing_histories.index', [
             'vehicles' => $vehicles,
-            'browsingHistories' => $browsingHistories,
+            'browsing_histories' => $browsing_histories,
         ]);
     }
 
@@ -54,11 +58,13 @@ class BrowsingHistoryController extends Controller
             'registration_number.regex' => 'A megadott rendszám formátuma nem megfelelő.'
         ]);        
 
-        $vehicle =  Vehicle::where('registration_number', $validated['registration_number'])->first();
+        $formatted_registration_number = $this->transformRegistrationNumber($validated['registration_number']);
+
+        $vehicle =  Vehicle::where('registration_number', $formatted_registration_number)->first();
 
         if ($vehicle) {
             $browsing_history = BrowsingHistory::factory()->create([
-                'searched_registration_number' => $validated['registration_number'],
+                'searched_registration_number' => $formatted_registration_number,
                 'searched_at' => now()->format('Y-m-d'),
             ]);
 

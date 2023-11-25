@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 use \App\Models\User;
 use \App\Models\Vehicle;
 use \App\Models\LossEvent;
+use \App\Policies\LossEventPolicy;
 
 
 class LossEventController extends Controller
@@ -32,7 +34,11 @@ class LossEventController extends Controller
      */
     public function show(LossEvent $loss_event)
     {
-        if (auth()->user()->cannot('viewAny')) {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        if (auth()->user()->cannot('view', $loss_event)) {
             Session::flash('not_premium_user');
             return redirect()->back();
         }

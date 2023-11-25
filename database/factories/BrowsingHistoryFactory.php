@@ -20,7 +20,7 @@ class BrowsingHistoryFactory extends Factory
         // * keresés ideje
 
         return [
-            'searched_registration_number' => "ABC-123",
+            'searched_registration_number' => \App\Models\Vehicle::all()->random()->registration_number,
             'searched_at' => fake()->date(),
         ];
     }
