@@ -57,7 +57,7 @@
             const hiddenValue = $(this).data('hidden-value');
 
             // Create a form
-            const form = $('<form action="{{ route("browsing_histories.store") }}" method="POST"></form>');
+            const form = $('<form action="{{ route("browsing_histories.store") }}" method="POST" enctype="multipart/form-data"></form>');
             form.append('@csrf');
             form.append('<input type="hidden" name="registration_number" value="' + hiddenValue + '">');
 

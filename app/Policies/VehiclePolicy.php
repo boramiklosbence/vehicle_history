@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
+use Illuminate\Auth\Access\Response;
+
 use App\Models\User;
 use App\Models\Vehicle;
-use Illuminate\Auth\Access\Response;
 
 class VehiclePolicy
 {

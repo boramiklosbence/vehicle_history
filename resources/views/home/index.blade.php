@@ -36,7 +36,7 @@
             <div class="col-12 col-md-1 col-lg-2">
                 <div class="float-lg-end">
                     <a href="{{ route('vehicles.create') }}" role="button" class="btn btn-sm btn-success mb-1">
-                        <i class="fas fa-plus-circle"></i> Jármú hozzáadása
+                        <i class="fas fa-plus-circle"></i> Jármú rögzítés
                     </a>
                 </div>
             </div>
@@ -46,7 +46,7 @@
             <div class=" col-12 col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('browsing_histories.store') }}">
+                        <form method="POST" action="{{ route('browsing_histories.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-2">
                                 <div class="col-12 col-md-12 col-lg-10 mb-2 mb-lg-0">
