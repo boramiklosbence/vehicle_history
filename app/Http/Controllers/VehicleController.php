@@ -86,7 +86,7 @@ class VehicleController extends Controller
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $filename = 'img' . Str::random(10) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('storage')->put(
+            Storage::disk('public')->put(
                 $filename, $file->get()
             );
         }
@@ -102,7 +102,8 @@ class VehicleController extends Controller
         ]);
 
         Session::flash('vehicle_created');
-        return redirect()->route('vehicles.show', $vehicle);
+        Session::flash('registration_number', $formatted_registration_number);
+        return redirect()->route('vehicles.create');
     }
 
     /**

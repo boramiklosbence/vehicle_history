@@ -10,8 +10,12 @@
             </a>
         </div>
         @if (Session::has('vehicle_created'))
-            <div class="alert alert-primary" role="alert">
-                A jármű rögzítve lett az adatbázisban.<br />
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8 ">
+                    <div class="alert alert-success" role="alert">
+                        A(z) {{session('registration_number')}} rendszámmal rendelkező jármű rögzítve lett az adatbázisban.<br />
+                    </div>
+                </div>
             </div>
         @endif
         <div class="row justify-content-center">
