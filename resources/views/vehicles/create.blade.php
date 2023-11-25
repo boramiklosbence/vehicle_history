@@ -71,7 +71,7 @@
                     </div>
                     {{-- Year input --}}
                     <div class="form-group row mb-3">
-                        <label for="year" class="col-sm-2 col-form-label">Évjárat:</label>
+                        <label for="year" class="col-sm-2 col-form-label">Gyártási év:</label>
                         <div class="col-sm-10">
                             <input 
                                   type="number" 
@@ -105,7 +105,11 @@
                                     </div>
                                     <div id="preview" class="col-12 d-none">
                                         <p>Kép előnezet:</p>
-                                        <img id="preview_image" src="#" alt="Jármű" width="300px">
+                                        <img 
+                                            src="#" 
+                                            id="preview_image" 
+                                            alt="Jármű" 
+                                            width="300px">
                                     </div>
                                 </div>
                             </div>

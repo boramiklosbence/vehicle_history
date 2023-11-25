@@ -22,7 +22,7 @@
                                     $vehicle = $vehicles->where('registration_number', $browsing_history->searched_registration_number)->first();
                                 @endphp
                                 <img 
-                                    src="{{ isset($vehicles->img_path) ? './storage/'.$vehicles->img_path : asset('storage/images/default_vehicle.jpg') }}" 
+                                    src="{{ isset($vehicle->image_path) ? asset('storage/'.$vehicle->image_path) : asset('storage/default_vehicle.jpg') }}"
                                     class="mx-auto d-block rounded" 
                                     style="max-width: 25%;"
                                     alt="Jármű"

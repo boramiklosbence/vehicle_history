@@ -33,7 +33,11 @@
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-4">
-                                    <img src="{{ isset($vehicle->image_path) ? './storage/' . $vehicle->image_path : asset('storage/images/default_vehicle.jpg') }}" class="rounded mx-auto d-block mb-2 mb-lg-0 img-thumbnail" alt="Jármű">
+                                    <img 
+                                        src="{{ isset($vehicle->image_path) ? asset('storage/'.$vehicle->image_path) : asset('storage/default_vehicle.jpg') }}" 
+                                        class="rounded mx-auto d-block mb-2 mb-lg-0 img-thumbnail" 
+                                        alt="Jármű"
+                                    >
                                 </div>
                                 <div class="col-8">
                                     <p><span class="fw-bold">Rendszám: </span>{{ $vehicle->registration_number }}</p>

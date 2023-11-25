@@ -53,7 +53,7 @@ class VehicleController extends Controller
             return redirect()->back();
         }
 
-        $request->validate([
+        $validated = $request->validate([
             'registration_number' => [
                 'required',
                 'regex:/^(?:[A-Za-z]{3}-?\d{3}|[A-Za-z]{3}\d{3})$/',
@@ -66,7 +66,7 @@ class VehicleController extends Controller
                 'numeric',
                 'integer',
                 'gt:0',
-                'lt:' . (date('Y')),
+                'lte:' . (date('Y')),
             ],
             'img' => 'required|file|mimes:jpg,png|max:4096',
         ],[
@@ -86,7 +86,7 @@ class VehicleController extends Controller
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $filename = 'img' . Str::random(10) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('public')->put(
+            Storage::disk('storage')->put(
                 $filename, $file->get()
             );
         }
