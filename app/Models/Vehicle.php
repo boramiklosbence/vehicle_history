@@ -24,6 +24,6 @@ class Vehicle extends Model
         'brand',
         'type',
         'year',
-        'img_path',
+        'image_path',
     ];
 }

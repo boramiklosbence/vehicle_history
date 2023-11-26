@@ -1,27 +1,27 @@
 @extends('layouts.app')
-
-@section('title', 'Jármű rögzítés')
+@section('title', 'Jármű szerkesztése')
 
 @section('content')
     <div class="container">
-        <h1>Jármű rögzítés</h1>
+        <h1>Jármű szerkesztése</h1>
         <div class="mb-4">
             <a href="{{ route('home.index') }}">
                 <i class="fa-solid fa-chevron-left"></i> Vissza a főoldalra
             </a>
         </div>
-        @if (Session::has('vehicle_created'))
+        @if (Session::has('vehicle_edited'))
             <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
+                <div class="col-12 col-md-10 col-lg-8 ">
                     <div class="alert alert-success" role="alert">
-                        A(z) {{ session('registration_number') }} rendszámmal rendelkező jármű rögzítve lett az adatbázisban.<br>
+                        A(z) {{ session('registration_number') }} rendszámmal rendelkező jármű módosítva lett az adatbázisban.<br>
                     </div>
                 </div>
-            </div>   
+            </div>
         @endif
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form method="post" action="{{ route('vehicles.store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('vehicles.update', $vehicle) }}" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     {{-- Registration number input --}}
                     <div class="form-group row mb-3">
@@ -33,7 +33,8 @@
                                 name="registration_number"
                                 class="form-control @error('registration_number') is-invalid @else @if (old('registration_number')) is-valid @endif @enderror"
                                 placeholder="XYZ-123"
-                                value="{{ old('registration_number') }}"
+                                value="{{ old('registration_number', $vehicle->registration_number) }}"
+                                readonly
                             >
                             @error('registration_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -50,7 +51,7 @@
                                 name="brand"
                                 class="form-control @error('brand') is-invalid @else @if (old('brand')) is-valid @endif @enderror"
                                 placeholder="Mercedes-Benz"
-                                value="{{ old('brand') }}"
+                                value="{{ old('brand', $vehicle->brand) }}"
                             >
                             @error('brand')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -67,7 +68,7 @@
                                 name="type"
                                 class="form-control @error('type') is-invalid @else @if (old('type')) is-valid @endif @enderror"
                                 placeholder="W140"
-                                value="{{ old('type') }}"
+                                value="{{ old('type', $vehicle->type) }}"
                             >
                             @error('type')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -84,7 +85,7 @@
                                 id="year"
                                 class="form-control @error('year') is-invalid @else @if (old('year')) is-valid @endif @enderror"
                                 placeholder="1991"
-                                value="{{ old('year') }}"
+                                value="{{ old('year', $vehicle->year) }}"
                             >
                             @error('year')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -92,7 +93,7 @@
                         </div>
                     </div>
                     {{-- Image input --}}
-                    <div class="form-group row mb-3">
+                    <div class="form-group row mb-3" id="image_section">
                         <label for="image" class="col-sm-2 col-form-label">Kép:</label>
                         <div class="col-sm-10">
                             <div class="form-group">
@@ -108,24 +109,24 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div id="preview" class="col-12 d-none">
-                                        <p>Kép előnezet:</p>
-                                        <img 
-                                            src="" 
-                                            id="preview_image" 
-                                            alt="Jármű" 
+                                    <div id="image_preview" class="col-12">
+                                        <p>Kép előnézet:</p>
+                                        {{-- TODO: Use attached image --}}
+                                        <img
+                                            src="{{ isset($vehicle->image_path) ? asset('storage/'.$vehicle->image_path) : asset('storage/default_vehicle.jpg') }}"
+                                            id="preview_image"
                                             width="300px"
+                                            alt="Jármű"
                                         >
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     {{-- Submit button --}}
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Mentés
-                        </button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Mentés</button>
                     </div>
                 </form>
             </div>
@@ -136,17 +137,18 @@
 @section('scripts')
     <script>
         const imageInput = document.querySelector('input#image');
-        const previewContainer = document.querySelector('#preview');
         const previewImage = document.querySelector('img#preview_image');
+        
+        const originalImage = '{{ isset($vehicle->image_path) ? asset("storage/$vehicle->image_path") : asset("storage/default_vehicle.jpg") }}';
 
-        imageInput.onchange = event => {
+        imageInput.addEventListener('change', event => {
             const [file] = imageInput.files;
+
             if (file) {
-                previewContainer.classList.remove('d-none');
                 previewImage.src = URL.createObjectURL(file);
             } else {
-                previewContainer.classList.add('d-none');
+                previewImage.src = originalImage;
             }
-        }
+        })
     </script>
 @endsection

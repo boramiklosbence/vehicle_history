@@ -68,7 +68,7 @@ class VehicleController extends Controller
                 'gt:0',
                 'lte:' . (date('Y')),
             ],
-            'img' => 'required|file|mimes:jpg,png|max:4096',
+            'image' => 'required|file|mimes:jpg,png|max:4096',
         ],[
             'required' => 'A mező kitöltése kötelező.',
             'registration_number.regex' => 'A megadott rendszám formátuma nem megfelelő.',
@@ -77,15 +77,15 @@ class VehicleController extends Controller
             'year.integer' => 'A megadott év nem egész szám.',
             'year.gt' => 'A megadott év nem lehet kisebb mint 0.',
             'year.lt' => 'A megadott év nem lehet nagyobb mint ' . (date('Y')) . '.',
-            'img.required' => 'Kép feltöltése kötelező.',
-            'img.mimes' => 'A megadott fájl nem kép.',
-            'img.max' => 'A megadott fájl mérete nem lehet nagyobb mint 4MB.',
+            'image.required' => 'Kép feltöltése kötelező.',
+            'image.mimes' => 'A megadott fájl nem kép.',
+            'image.max' => 'A megadott fájl mérete nem lehet nagyobb mint 4MB.',
         ]);
 
         $filename = '';
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $filename = 'img' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = 'image' . Str::random(10) . '.' . $file->getClientOriginalExtension();
             Storage::disk('public')->put(
                 $filename, $file->get()
             );
@@ -127,12 +127,78 @@ class VehicleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id){}
+    public function edit(Vehicle $vehicle){
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        if(auth()->user()->cannot('update', $vehicle)){
+            Session::flash('not_admin_user');
+            return redirect()->back();
+        }
+
+        return view('vehicles.edit', [
+            'vehicle' => $vehicle,
+        ]);
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id){}
+    public function update(Request $request, Vehicle $vehicle){
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
+        if(auth()->user()->cannot('update', $vehicle)){
+            Session::flash('not_admin_user');
+            return redirect()->back();
+        }
+
+        $validated = $request->validate([
+            'registration_number' => [
+                'required',
+                'regex:/^(?:[A-Za-z]{3}-?\d{3}|[A-Za-z]{3}\d{3})$/',
+            ],
+            'brand' => 'required',
+            'type' => 'required',
+            'year' => [
+                'required',
+                'numeric',
+                'integer',
+                'gt:0',
+                'lte:' . (date('Y')),
+            ],
+            'image' => 'file|mimes:jpg,png|max:4096',
+        ]);
+
+        $image_path = $vehicle->image_path;
+
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $image_path = 'image' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+
+            // delete the old image if it exists
+            if ($vehicle->image_path != null) {
+                Storage::disk('public')->delete($vehicle->image_path);
+            }
+            // upload the new image
+            Storage::disk('public')->put(
+                $image_path, $file->get()
+            );
+        }
+
+        $vehicle->registration_number = $validated['registration_number'];
+        $vehicle->brand = $validated['brand'];
+        $vehicle->type = $validated['type'];
+        $vehicle->year = $validated['year'];
+        $vehicle->image_path = $image_path;
+        $vehicle->save();
+
+        Session::flash('vehicle_edited');
+        Session::flash('registration_number', $vehicle->registration_number);
+        return redirect()->route('vehicles.edit', $vehicle);   
+    }
 
     /**
      * Remove the specified resource from storage.

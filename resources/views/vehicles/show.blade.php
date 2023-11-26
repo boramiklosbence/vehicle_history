@@ -12,7 +12,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8 ">
                     <div class="alert alert-danger" role="alert">
-                        Nincs jogosultságod a káresemény részletes megtekintéséhez.<br />
+                        Nincs jogosultságod a káresemény részletes megtekintéséhez.<br>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-header">Káresemények</div>
-                    <div clasd="card-body">
+                    <div class="card-body">
                         <table class="table table-hover align-middle mb-0">
                             <thead>
                                 <tr>

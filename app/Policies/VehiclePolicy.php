@@ -38,7 +38,7 @@ class VehiclePolicy
      */
     public function update(User $user, Vehicle $vehicle): bool
     {
-        //
+        return $user->is_admin === 1;
     }
 
     /**
