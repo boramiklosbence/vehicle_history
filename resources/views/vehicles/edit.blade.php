@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Jármű szerkesztése')
+@section('title', 'Jármű szerkesztés')
 
 @section('content')
     <div class="container">
-        <h1>Jármű szerkesztése</h1>
+        <h1>Jármű szerkesztés</h1>
         <div class="mb-4">
             <a href="{{ route('home.index') }}">
                 <i class="fa-solid fa-chevron-left"></i> Vissza a főoldalra

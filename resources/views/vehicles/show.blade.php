@@ -4,10 +4,17 @@
 
 @section('content')
     <div class="container">
-        <h1>Keresési eredmény</h1>
-        <div class="mb-4">
-            <a href="{{ route('home.index')}}"><i class="fa-solid fa-chevron-left"></i> Vissza a főoldalra</a>
+
+        <div class="row justify-content-between">
+            <div class="col-12 col-md-8">
+                <h1>Keresési eredmény</h1>
+                <div class="mb-4">
+                    <a href="{{ route('home.index')}}"><i class="fa-solid fa-chevron-left"></i> Vissza a főoldalra</a>
+                </div>
+            </div>
         </div>
+
+
         @if (Session::has('not_premium_user'))
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8 ">
@@ -21,7 +28,14 @@
         <div class="row justify-content-center mb-2">
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="card">
-                    <div class="card-header">Jármű adatai</div>
+                    <div class="card-header">
+                        Jármű adatai
+                        <div class="float-end">
+                            <a href="{{route("vehicles.edit", $vehicle)}}" role="button" class="btn btn-sm btn-primary mb-1">
+                                <i class="fa-solid fa-pen"></i> Szerkesztés
+                            </a>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-8 col-md-6 col-lg-4 mb-2">
